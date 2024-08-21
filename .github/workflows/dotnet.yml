@@ -21,10 +21,16 @@ jobs:
       with:
         global-json-file: global.json
 
-    - run: |
-        dotnet workload install --from-rollback-file Rollback.json android ios maccatalyst macos maui maui-android
-      name: Install workloads
+    # - run: |
+    #     dotnet workload install --from-rollback-file Rollback.json android ios maccatalyst macos maui maui-android
+    #   name: Install workloads
 
+    - run: |
+        & dotnet tool update --global uno.check --version 1.26.0-dev.17 --add-source https://api.nuget.org/v3/index.json
+      name: Install Uno Check
+    - run: | 
+        & uno-check -v --ci --non-interactive --fix --skip androidsdk --skip androidemulator --skip xcode --skip gtk3 --skip vswin --skip vsmac --pre-major
+      name: Run uno-check
 
     - name: Build
       run: dotnet build BuildManager.csproj -t:ExecuteMyBuild
