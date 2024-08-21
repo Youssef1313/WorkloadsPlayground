@@ -27,4 +27,4 @@ jobs:
 
 
     - name: Build
-      run: dotnet build
+      run: dotnet build BuildManager.csproj -t:ExecuteMyBuild

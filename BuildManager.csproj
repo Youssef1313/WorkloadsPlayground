@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<TargetFramework>net462</TargetFramework>
+		<UpdateAssemblyInfo>false</UpdateAssemblyInfo>
+	</PropertyGroup>
+
+	<Target Name="ExecuteMyBuild">
+		<MSBuild Properties="Configuration=Release"
+			Projects="WorkloadsPlayground.csproj"
+			Targets="Restore;Build"
+			RebaseOutputs="false"
+			BuildInParallel="true" />
+	</Target>
+
+</Project>
